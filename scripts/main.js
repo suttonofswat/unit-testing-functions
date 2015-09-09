@@ -9,7 +9,16 @@
  * If the input is invalid throw an 'Invalid Input' exception.
  */
 function checkData(inputString) {
-	// your code goes here
+	if(typeof inputString !== 'string'){
+		throw 'invalid input';
+	}
+
+	if(inputString.length === 3){
+		return true;
+	}
+	else{
+		return false;
+	}
 }
 
 /*
@@ -20,7 +29,23 @@ function checkData(inputString) {
  * If the input is invalid throw an 'Invalid Input' exception.
  */
 function concatenateArrays(a, b) {
-	// your code goes here
+	if(Array.isArray(a) !== true && Array.isArray(b) !== true){
+		throw 'Invalid Input'
+	}
+
+	for(var i=0; i < a.length; i++){
+		if(typeof a[i] !== 'number'){
+			throw 'Invalid input'
+		}
+	}
+
+	for(var i=0; i < b.length; i++){
+		if(typeof b[i] !== 'number'){
+			throw 'Invalid input'
+		}
+	}
+	var newArray =a.concat(b)
+	return newArray;
 }
 
 /*
@@ -33,8 +58,19 @@ function concatenateArrays(a, b) {
  * If the input is invalid throw an 'Invalid Input' exception.
  */
 function fixProperNoun(noun) {
-	// your code goes here
-}
+	if(typeof noun !== 'string'){
+		throw 'Invalid Input'
+	}
+
+	var firstLetter = noun.substring(0,1).toUpperCase();
+	var propNoun = firstLetter + noun.substring(1).toLowerCase();
+	
+	
+	return propNoun;
+	}
+
+
+
 
 /*
  * PROBLEM `sortLetters`: (normal)
@@ -44,7 +80,12 @@ function fixProperNoun(noun) {
  * If the input is invalid throw an 'Invalid Input' exception.
  */
 function sortLetters(inputString) {
-	// your code goes here
+	if(typeof inputString !== 'string'){
+		throw 'Invalid Input'
+	}
+
+	var newString=inputString.split('').sort().join('');
+	return newString;
 }
 
 /*
@@ -55,7 +96,19 @@ function sortLetters(inputString) {
  * If the input is invalid throw an 'Invalid Input' exception.
  */
 function absVal(integer) {
-	// your code goes here
+	if(typeof integer !== 'number'){
+		throw 'Invalid Input';
+	}
+
+	var posNumb = null;
+
+	if(integer < 0){
+		posNumb = Math.ceil(integer)*-1;
+	} else{
+		posNumb = Math.floor(integer);
+	}
+
+	return posNumb;
 }
 
 /*
@@ -65,17 +118,46 @@ function absVal(integer) {
  *
  * If the input is invalid throw an 'Invalid Input' exception.
  */
+ function myMin(integer1, integer2){
+	if(typeof integer1 !== 'number' && typeof integer2 !== 'number'){
+		throw 'Invalid Input';
+	}
+
+	if(integer1 < integer2){
+		return integer1
+	}
+	else{
+		return integer2
+	}
+
+
+
+ }
 
 /*
  * PROBLEM `myMax`: (normal) - Actual Interview Question
- * Write a function called `myMax` that takes an array of integers ans returns
+ * Write a function called `myMax` that takes an array of integers and returns
  * the largest.
  *
  * If the input is invalid throw an 'Invalid Input' exception.
  *
  * Insane mode: do this without using a for loop.
  */
-
+function myMax(numArray){
+	if(Array.isArray(numArray) !== true){
+		throw 'Invalid Input'
+	}
+	for(var i=0; i < numArray.length; i++){
+		if(typeof numArray[i] !== 'number'){
+			throw 'Invalid input'
+		}
+	}
+	var sortArray = numArray.sort(function (a,b) {
+		return a - b;
+	});
+	var largetInt = sortArray.reverse()[0]
+	return largetInt;
+}
 /*
  * PROBLEM `getMonth`: (normal)
  * Write a function called `getMonth` that maps a given integer to a month.
@@ -107,6 +189,7 @@ function absVal(integer) {
  * integers from 1 up to and including a given positive, non-zero integer N.
  *
  * If the input is invalid throw an 'Invalid Input' exception.
+ //for loop that will count up to 10 and on each one do [i]*[i]
  */
 
 /* 

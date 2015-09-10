@@ -12,7 +12,7 @@ describe('insertDashes', function() {
 	});
 
 	it('should return \'a-b-c\' if a \'abc\' is passed in', function() {
-		expect(functions.insertDashes('abc')).to.be.equal('a-b-c');
+		expect(functions.insertDashes('abc test')).to.be.equal('a-b-c t-e-s-t');
 	});
 	
 });

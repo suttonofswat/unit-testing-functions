@@ -295,13 +295,30 @@ function findMaxDiff(arrayNums){
 		throw 'Invalid Input'
 	}
 	for(var i=0; i < arrayNums.length; i++){
-		if(!_.isNumber(arrayNums)(i)){
+		if(!_.isNumber(arrayNums[i])){
 			throw 'Invalid input'
 		}
 	}
+	var allSums =[];
+
+var chunked= _.chunk(arrayNums,2)
+
+	for(var i=0; i < arrayNums.length; i++){
+		var max= _.max(chunked[0]);
+		var min=_.min(chunked[0]);
+		var result = max - min;
+		allSums.push(result);
+		chunked = _.flatten(chunked);
+		chunked = _.drop(chunked);
+		chunked= _.chunk(chunked,2)
 
 	
+	}
+	var newMax = _.max(allSums);
+	return newMax;
 }
+
+
 /*
  * PROBLEM `insertDashes`: (normal)
  * Write a function called `insertDashes` that transforms a given sentence into
@@ -315,9 +332,14 @@ function findMaxDiff(arrayNums){
 if(typeof inputString !== 'string'){
 		throw 'Invalid Input'
 	}
+var final=[];
+var split = inputString.split(' ');
 
-	var newString = inputString.split('').join('-');
-	return newString;
+for (var i = 0; i < split.length; i++){
+	var dash = split[i].split('').join('-')
+	final.push(dash)
+}
+return final.join(' ');
 
 }
 /*
@@ -325,13 +347,29 @@ if(typeof inputString !== 'string'){
  * Implement a function called `mySubstring` that can output the substring of
  * the given string within specified bounds.
  *
- * For example: mySubstring('abcde', 2, 3) === 'cd'
+ * For example: mySubstring('abcde', 2, 4) === 'cd'
  *
  * Don't use String.substring in your solution.
  *
  * If the input is invalid throw an 'Invalid Input' exception.
  */
+function mySubstring(string, a, b){
+	if(!_.isString(string)){
+		throw 'Invalid Input'
+	}
+	if(!_.isNumber(a) && !_.isNumber(b)){
+		throw 'Invalid Input'
+	}
 
+	if(a > b){
+		var newString = string.slice(b,a);
+	}
+	else{
+		var newString = string.slice(a,b);
+	}
+
+	return newString
+}
 /*
  * PROBLEM `splitSwap`: (hard)
  * Write a function called `splitSwap` that swaps two halves of a given array.

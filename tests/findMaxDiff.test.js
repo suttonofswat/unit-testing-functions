@@ -12,8 +12,8 @@ describe('findMaxDiff', function() {
 	it('should throw an exception if the input is not a number', function() {
 		expect(function() {functions.findMaxDiff('a')}).to.throw('Invalid Input');
 	});
-	it('should return the difference of two numbers', function() {
-		expect(functions.findMaxDiff([5,2])).to.deep.equal(3);
+	it('should return the max difference of the array', function() {
+		expect(functions.findMaxDiff([5, 4, 3, 2, 8])).to.deep.equal(6);
 	});
 	// it('should return the sum of all the squares', function() {
 	// 	expect(functions.sumSquares(3)).to.deep.equal(14);

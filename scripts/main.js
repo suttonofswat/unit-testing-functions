@@ -1,4 +1,5 @@
 'use strict';
+var _ = require('lodash');
 
 /*
  * PROBLEM `checkData`: (normal)
@@ -170,28 +171,118 @@ function myMax(numArray){
  * If the input is invalid throw an 'Invalid Input' exception.
  */
 
+ function getMonth(number){
+	if(number < 0 || number >= 12){
+	throw 'Invalid Input'
+	}
+	for(var i=0; i < number.length; i++){
+		if(typeof number[i] !== 'number'){
+			throw 'Invalid Input'
+		}
+	}
+ var months = {
+        0: "January",
+        1: "February",
+        2: "March",
+        3: "April",
+        4: "May",
+        5: "June",
+        6: "July",
+        7: "August",
+        8: "September",
+        9: "October",
+        10: "November",
+        11: "December"
+    }
+ return months[number - 1]
+}
+
 /*
  * PROBLEM `randomElement`: (normal)
  * Create a function called `randomElement` that takes an array of values and
  * returns one randomly selected value from that array.
  */
-
+function randomElement(values){
+	if(Array.isArray(values) !== true){
+		throw 'Invalid Input'
+	}
+	var item = values[Math.floor(Math.random()*values.length)];
+	return item;
+}
 /*
  * PROBLEM `studentPairs`: (normal)
  * Create a javascript function called `studentPairs` that takes an array of
  * student names and returns an array of randomly selected pairs of students
  * (array of arrays).
  */
+function studentPairs(studentNames){
+ 	if(!_.isArray(studentNames)) {
+		throw 'Invalid Input'
+	}
 
+	for(var studentNum=0; studentNum < studentNames.length; studentNum++){
+		var currentStudent = studentNames[studentNum];
+		if(!_.isString(currentStudent)) {
+			throw 'Invalid Input: student must be a string'
+		}
+		
+	}
+	var pairs = [];
+
+	var max = Math.floor(studentNames.length/2);
+
+	for(var pairNum = 0; pairNum < max; pairNum++){
+		var studentNum1 = getRandomInt(0, studentNames.length-1);
+		var studentName1 = studentNames.splice(studentNum1, 1);
+
+		var studentNum2 = getRandomInt(0, studentNames.length-1);
+		var studentName2 = studentNames.splice(studentNum2, 1);
+
+		// pairs.push( [
+		// 		studentName1[0],
+		// 		studentName2[0]
+		// 	]);
+		
+		pairs.push(studentName1.concat(studentName2));
+	}
+	if(studentNames.length > 0){
+		var pairNum = getRandomInt(0, pairs.length-1);
+		pairs[pairNumber].push(studentNames[0])
+	}
+	
+	
+
+	function getRandomInt(min,max){
+		return Math.floor(Math.random() * (max - min + 1)) + min;
+	}
+
+	return pairs;
+
+}
 /*
  * PROBLEM `sumSquares`: (normal)
  * Write a function called `sumSquares` that returns the sum of squares of all
  * integers from 1 up to and including a given positive, non-zero integer N.
  *
  * If the input is invalid throw an 'Invalid Input' exception.
- //for loop that will count up to 10 and on each one do [i]*[i]
+ //for loop that will count up to 9 and on each one do [i]*[i]
  */
+function sumSquares(n){
+var allSum=[];
+	if(!_.isNumber(n)) {
+			throw 'Invalid Input'
+		};
+	if(n < 1) {
+			throw 'Invalid Input'
+		};
+	for (var i= 1; i < n + 1; i++){
+		var squared = Math.pow(i,2);
+		allSum.push(squared)
+		
+	}
+return _.sum(allSum)
 
+}
 /* 
  * PROBLEM `findMaxDiff`: (normal)
  * Given an array of integers, write a function called `findMaxDiff` that finds
@@ -199,7 +290,18 @@ function myMax(numArray){
  *
  * If the input is invalid throw an 'Invalid Input' exception.
  */
+function findMaxDiff(arrayNums){
+	if(!_.isArray(arrayNums)) {
+		throw 'Invalid Input'
+	}
+	for(var i=0; i < arrayNums.length; i++){
+		if(!_.isNumber(arrayNums)(i)){
+			throw 'Invalid input'
+		}
+	}
 
+	
+}
 /*
  * PROBLEM `insertDashes`: (normal)
  * Write a function called `insertDashes` that transforms a given sentence into
@@ -209,6 +311,15 @@ function myMax(numArray){
  * If the input is invalid throw an 'Invalid Input' exception.
  */
 
+ function insertDashes(inputString){
+if(typeof inputString !== 'string'){
+		throw 'Invalid Input'
+	}
+
+	var newString = inputString.split('').join('-');
+	return newString;
+
+}
 /*
  * PROBLEM `mySubstring`: (normal)
  * Implement a function called `mySubstring` that can output the substring of

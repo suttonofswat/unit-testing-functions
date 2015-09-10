@@ -215,50 +215,48 @@ function randomElement(values){
  * student names and returns an array of randomly selected pairs of students
  * (array of arrays).
  */
-function studentPairs(studentNames){
- 	if(!_.isArray(studentNames)) {
-		throw 'Invalid Input'
+function studentPairs(studentNames) {
+	if(!_.isArray(studentNames)) {
+		throw 'Invalid input';
 	}
 
-	for(var studentNum=0; studentNum < studentNames.length; studentNum++){
-		var currentStudent = studentNames[studentNum];
+	for(var studentNumber = 0; studentNumber < studentNames.length; studentNumber++) {
+		var currentStudent = studentNames[studentNumber];
 		if(!_.isString(currentStudent)) {
-			throw 'Invalid Input: student must be a string'
+			throw 'Invalid input: student must be a string';
 		}
-		
 	}
+
 	var pairs = [];
 
 	var max = Math.floor(studentNames.length/2);
 
-	for(var pairNum = 0; pairNum < max; pairNum++){
-		var studentNum1 = getRandomInt(0, studentNames.length-1);
-		var studentName1 = studentNames.splice(studentNum1, 1);
+	for(var pairNum = 0; pairNum < max; pairNum++) {
+		var studentNumber1 = getRandomInt(0, studentNames.length-1);
+		var studentName1 = studentNames.splice(studentNumber1, 1);
 
-		var studentNum2 = getRandomInt(0, studentNames.length-1);
-		var studentName2 = studentNames.splice(studentNum2, 1);
+		var studentNumber2 = getRandomInt(0, studentNames.length-1);
+		var studentName2 = studentNames.splice(studentNumber2, 1);
 
-		// pairs.push( [
-		// 		studentName1[0],
-		// 		studentName2[0]
-		// 	]);
-		
+		// pairs.push([
+		// 	studentName1[0],
+		// 	studentName2[0]
+		// ]);
 		pairs.push(studentName1.concat(studentName2));
 	}
-	if(studentNames.length > 0){
-		var pairNum = getRandomInt(0, pairs.length-1);
-		pairs[pairNumber].push(studentNames[0])
-	}
-	
-	
 
-	function getRandomInt(min,max){
+	if(studentNames.length > 0) {
+		var pairNumber = getRandomInt(0, pairs.length-1);
+		pairs[pairNumber].push(studentNames[0]);
+	}
+
+	function getRandomInt(min, max) {
 		return Math.floor(Math.random() * (max - min + 1)) + min;
 	}
 
 	return pairs;
-
 }
+
 /*
  * PROBLEM `sumSquares`: (normal)
  * Write a function called `sumSquares` that returns the sum of squares of all
